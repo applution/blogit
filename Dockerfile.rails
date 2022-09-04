@@ -1,0 +1,10 @@
+FROM ruby:3.1.2
+
+ENV INSTALL_PATH /app
+
+RUN mkdir -p $INSTALL_PATH
+WORKDIR $INSTALL_PATH
+
+RUN gem install rails bundler
+
+CMD ["/bin/sh"]
