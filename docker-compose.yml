@@ -24,7 +24,19 @@ services:
       - postgres
     depends_on:
       - postgres
+  pgadmin:
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
 volumes:
   postgres:
   bundler_gems:
   node_modules:
+  pgadmin_data:
