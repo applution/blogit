@@ -24,6 +24,8 @@ services:
       - postgres
     depends_on:
       - postgres
+    env_file:
+      - .env
   pgadmin:
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
