@@ -7,3 +7,10 @@ inherit_gem:
 
 AllCops:
   NewCops: enable
+
+# Force the uses of parentheses for every method call with at least an argument.
+# https://medium.com/@gmalette/revoking-the-privilege-b2af90a84d84
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  EnforcedStyle: require_parentheses
+  IgnoreMacros: false
