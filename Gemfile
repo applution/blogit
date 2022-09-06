@@ -15,12 +15,12 @@ gem "tailwindcss-rails"
 gem "turbo-rails"
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "rubocop"
+  gem "rubocop-rails"
   gem "standard"
 end
 
 group :development do
   gem "web-console"
 end
-
