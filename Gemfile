@@ -14,13 +14,17 @@ gem("stimulus-rails")
 gem("tailwindcss-rails")
 gem("turbo-rails")
 
+group(:development) do
+  gem("web-console")
+end
+
 group(:development, :test) do
   gem("debug", platforms: %i[mri mingw x64_mingw])
+  gem("rspec-rails")
   gem("rubocop")
-  gem("rubocop-rails")
   gem("standard")
 end
 
-group(:development) do
-  gem("web-console")
+group(:test) do
+  gem("capybara")
 end
