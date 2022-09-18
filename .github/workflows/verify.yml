@@ -19,3 +19,33 @@ jobs:
         run: |
           bundle exec rubocop
 
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    environment: development
+    services:
+      postgres:
+        image: postgres:14.5
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        ports: [ "5432:5432" ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run tests
+        env:
+          RAILS_ENV: ${{ secrets.RAILS_ENV }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run:
+          bundle exec rails db:setup &&
+          bundle exec rails tailwindcss:install &&
+          bundle exec rspec
