@@ -1,12 +1,18 @@
 require:
   - standard
   - rubocop-rails
+  - rubocop-rspec
 
 inherit_gem:
   standard: config/base.yml
 
 AllCops:
   NewCops: enable
+  Exclude:
+    - bin/**/*
+    - db/schema.rb
+    - gems/**/*
+    - vendor/**/*
 
 # Force the uses of parentheses for every method call with at least an argument.
 # https://medium.com/@gmalette/revoking-the-privilege-b2af90a84d84
