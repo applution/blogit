@@ -1,3 +1,11 @@
+require "simplecov"
+
+SimpleCov.start do
+  add_filter("/db/")
+  add_filter("/spec/")
+  minimum_coverage(95)
+end
+
 require("capybara/rspec")
 
 RSpec.configure do |config|
