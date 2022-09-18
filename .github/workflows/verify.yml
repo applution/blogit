@@ -21,6 +21,11 @@ jobs:
 
   tests:
     name: Tests
+    env:
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORT_ID }}
+      RAILS_ENV: ${{ secrets.RAILS_ENV }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     runs-on: ubuntu-latest
     environment: development
     services:
@@ -41,10 +46,12 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Setup CodeClimate test reporter
+        run:
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter &&
+          chmod +x ./cc-test-reporter
+
       - name: Run tests
-        env:
-          RAILS_ENV: ${{ secrets.RAILS_ENV }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run:
           bundle exec rails db:setup &&
           bundle exec rails tailwindcss:install &&
